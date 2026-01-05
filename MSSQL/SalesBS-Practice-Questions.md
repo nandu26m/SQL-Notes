@@ -1041,3 +1041,357 @@ Focus areas:
      *End-to-end analytics.*
 
 ---
+**Difficulty 7 — Questions 301–400**
+Focus areas:
+
+* Complex CTE pipelines
+* Recursive queries
+* Multi-stage analytics
+* Data warehousing logic
+* Business KPI modeling
+
+---
+
+# Difficulty 7 — CTEs, Recursion & Multi-Stage Analytics (301–400)
+
+---
+
+## 🔹 Multi-CTE Pipelines
+
+301. Build a CTE to calculate total sales per customer, then rank customers by that value.
+     *Multi-step aggregation + ranking.*
+
+302. Use CTEs to compute monthly sales, then calculate month-over-month growth.
+     *Chained analytics.*
+
+303. Create a CTE to calculate employee sales, then filter top 10%.
+     *Performance segmentation.*
+
+304. Build a pipeline to identify customers contributing to 80% of revenue.
+     *Pareto logic.*
+
+305. Create a CTE to calculate average order value per month.
+     *Time-based metric.*
+
+306. Use CTEs to find products with declining sales for 3 consecutive months.
+     *Trend detection.*
+
+307. Build layered CTEs to detect churned customers.
+     *Customer lifecycle modeling.*
+
+308. Calculate rolling 6-month revenue using CTEs.
+     *Moving window logic.*
+
+309. Identify best salesperson per quarter using CTEs.
+     *Time-based ranking.*
+
+310. Build a reusable CTE for active customers.
+     *Reusability & clarity.*
+
+---
+
+## 🔹 Recursive CTEs (Hierarchy & Sequences)
+
+311. Build an employee hierarchy using recursive CTEs.
+     *Org tree modeling.*
+
+312. Find the management chain for a given employee.
+     *Upward recursion.*
+
+313. Calculate hierarchy depth per employee.
+     *Org complexity.*
+
+314. Identify top-level managers with most descendants.
+     *Team size analysis.*
+
+315. Detect circular reporting relationships.
+     *Data integrity check.*
+
+316. Flatten employee hierarchy into parent-child pairs.
+     *Normalization.*
+
+317. Find all employees under a given manager.
+     *Recursive traversal.*
+
+318. Compute total salary cost under each manager.
+     *Hierarchical aggregation.*
+
+319. Identify managers whose teams generate the most revenue.
+     *Team performance.*
+
+320. Find employees without managers (root nodes).
+     *Hierarchy roots.*
+
+---
+
+## 🔹 Advanced Analytical CTEs
+
+321. Use CTEs to calculate customer lifetime value (LTV).
+     *Lifetime aggregation.*
+
+322. Create a cohort analysis by customer first order month.
+     *Cohort definition.*
+
+323. Track cohort revenue over time using CTEs.
+     *Cohort retention.*
+
+324. Identify best-performing cohort by revenue.
+     *Cohort comparison.*
+
+325. Build a churn risk score using order frequency and recency.
+     *Predictive feature engineering.*
+
+326. Detect declining customers using rolling averages.
+     *Early churn detection.*
+
+327. Identify customers with seasonal buying patterns.
+     *Seasonality analysis.*
+
+328. Build a funnel: customers → orders → repeat orders.
+     *Funnel modeling.*
+
+329. Compute customer retention rate month-over-month.
+     *Retention analytics.*
+
+330. Calculate reactivation rate for dormant customers.
+     *Lifecycle analytics.*
+
+---
+
+## 🔹 Window Functions Inside CTEs
+
+331. Rank orders per customer by sales using CTE + window.
+     *Partition ranking.*
+
+332. Identify each customer’s peak spending month.
+     *Time-based max.*
+
+333. Calculate cumulative sales per customer using CTEs.
+     *Running totals.*
+
+334. Detect abnormal order values using z-score logic.
+     *Statistical anomaly detection.*
+
+335. Identify customers with consistent month-over-month growth.
+     *Trend consistency.*
+
+336. Compare employee performance before and after promotion date (assumed).
+     *Event comparison.*
+
+337. Find top 3 products per category per month.
+     *Multi-dimensional ranking.*
+
+338. Identify declining product categories.
+     *Category trend.*
+
+339. Detect sales volatility per employee.
+     *Stability analysis.*
+
+340. Identify peak sales days using moving averages.
+     *Peak detection.*
+
+---
+
+## 🔹 Complex Business Logic
+
+341. Allocate order revenue across employees proportionally.
+     *Revenue attribution.*
+
+342. Detect cannibalization between product categories.
+     *Product overlap.*
+
+343. Identify customers migrating to premium products.
+     *Upsell detection.*
+
+344. Compute weighted average delivery time.
+     *Logistics KPI.*
+
+345. Detect operational bottlenecks in shipping.
+     *Process optimization.*
+
+346. Identify customers with abnormal buying cycles.
+     *Behavior anomaly.*
+
+347. Build a customer health score.
+     *Multi-metric scoring.*
+
+348. Detect fraudulent orders using rule-based logic.
+     *Fraud heuristics.*
+
+349. Identify sales spikes driven by single customers.
+     *Concentration risk.*
+
+350. Compare weekday vs weekend conversion rates.
+     *Behavioral analysis.*
+
+---
+
+## 🔹 Advanced Set Logic & Division
+
+351. Find customers who bought from every category.
+     *Relational division.*
+
+352. Identify employees who sold all products in a category.
+     *Complete coverage.*
+
+353. Find products purchased by all high-value customers.
+     *Intersection logic.*
+
+354. Detect customers loyal to one salesperson.
+     *Exclusive relationship.*
+
+355. Identify cross-sell opportunities.
+     *Association analysis.*
+
+---
+
+## 🔹 Data Warehousing Patterns
+
+356. Build a fact table view for orders.
+     *Fact modeling.*
+
+357. Build dimension views for customers, products, employees.
+     *Dimension modeling.*
+
+358. Create a star schema query for reporting.
+     *OLAP-style query.*
+
+359. Simulate slowly changing dimension (Type 2) logic.
+     *Historical tracking.*
+
+360. Build snapshot tables using SQL.
+     *Point-in-time data.*
+
+---
+
+## 🔹 Performance & Scaling
+
+361. Optimize multi-CTE queries.
+     *Query refactoring.*
+
+362. Identify redundant scans in execution plans.
+     *Performance diagnosis.*
+
+363. Replace nested subqueries with window functions.
+     *Efficiency improvement.*
+
+364. Partition large tables logically for reporting.
+     *Scalability strategy.*
+
+365. Identify queries suitable for materialized views.
+     *Caching logic.*
+
+---
+
+## 🔹 Final Difficulty-7 Challenges
+
+366. Build a full executive sales dashboard query.
+     *End-to-end analytics.*
+
+367. Identify leading indicators of churn.
+     *Predictive insight.*
+
+368. Detect early signs of product decline.
+     *Lifecycle monitoring.*
+
+369. Build an automated anomaly detection query.
+     *Advanced analytics.*
+
+370. Compute rolling cohort LTV.
+     *Cohort economics.*
+
+371. Identify customers contributing to revenue volatility.
+     *Risk analysis.*
+
+372. Compare sales performance across regions.
+     *Geographical analytics.*
+
+373. Detect saturation in product demand.
+     *Market maturity.*
+
+374. Identify employee burnout signals using order patterns.
+     *Operational risk.*
+
+375. Build a reusable KPI layer in SQL.
+     *Analytics engineering.*
+
+376. Create SQL tests for data quality checks.
+     *Data reliability.*
+
+377. Validate archive vs current data consistency.
+     *Audit logic.*
+
+378. Track data freshness metrics.
+     *Pipeline monitoring.*
+
+379. Simulate backfilled data corrections.
+     *Historical adjustments.*
+
+380. Build a SQL-based monitoring alert.
+     *Operational alerting.*
+
+381. Identify customers with erratic spending behavior.
+     *Behavior volatility.*
+
+382. Detect abnormal delivery times per region.
+     *Logistics anomaly.*
+
+383. Find products with price elasticity changes.
+     *Pricing analytics.*
+
+384. Identify employees whose performance depends on seasonality.
+     *Seasonal performance.*
+
+385. Build a SQL-only forecasting baseline.
+     *Predictive groundwork.*
+
+386. Track KPI drift over time.
+     *Metric stability.*
+
+387. Detect customer lifecycle transitions.
+     *State modeling.*
+
+388. Build an explainable churn model using SQL features.
+     *Model feature prep.*
+
+389. Identify long-term value creators.
+     *Strategic insight.*
+
+390. Build a fully documented SQL analytics pipeline.
+     *Production readiness.*
+
+---
+
+## 🔹 Boss-Level Endgame (Still Difficulty 7)
+
+391. Design a full sales analytics mart in SQL.
+     *Data architecture.*
+
+392. Build reusable SQL macros (conceptual).
+     *Code abstraction.*
+
+393. Refactor analytics SQL for readability and reuse.
+     *Clean code.*
+
+394. Identify hidden assumptions in business metrics.
+     *Critical thinking.*
+
+395. Validate KPIs against business rules.
+     *Data governance.*
+
+396. Simulate missing data scenarios.
+     *Resilience testing.*
+
+397. Build SQL-based unit tests.
+     *Data testing.*
+
+398. Detect silent data corruption.
+     *Reliability engineering.*
+
+399. Build a production-ready analytics SQL model.
+     *Industry-grade SQL.*
+
+400. Explain your SQL design choices to stakeholders.
+     *Communication skill.*
+
+---
