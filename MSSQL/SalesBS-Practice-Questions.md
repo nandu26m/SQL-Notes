@@ -1,3 +1,137 @@
+# SalesDB Database Overview
+
+This document provides a concise understanding of the `SalesDB` database, including its schema, tables, and key relationships.
+
+---
+
+## Database: SalesDB
+
+### Schema: Sales
+
+`SalesDB` contains sales-related data, including customers, employees, products, and orders. The schema `Sales` is the main organizational structure.
+
+### Tables Overview
+
+#### 1. Customers
+
+| Column     | Type        | Nullable | Description                              |
+| ---------- | ----------- | -------- | ---------------------------------------- |
+| CustomerID | int         | NO       | Unique ID for each customer              |
+| FirstName  | varchar(50) | YES      | Customer's first name                    |
+| LastName   | varchar(50) | YES      | Customer's last name                     |
+| Country    | varchar(50) | YES      | Customer's country                       |
+| Score      | int         | YES      | Customer score, e.g., loyalty or ranking |
+
+**Notes:**
+
+* Primary key: `CustomerID`
+* Can join with `Orders` using `CustomerID`
+
+---
+
+#### 2. Employees
+
+| Column     | Type        | Nullable | Description                      |
+| ---------- | ----------- | -------- | -------------------------------- |
+| EmployeeID | int         | NO       | Unique employee identifier       |
+| FirstName  | varchar(50) | YES      | Employee first name              |
+| LastName   | varchar(50) | YES      | Employee last name               |
+| Department | varchar(50) | YES      | Department name                  |
+| BirthDate  | date        | YES      | Date of birth                    |
+| Gender     | char(1)     | YES      | M/F                              |
+| Salary     | int         | YES      | Employee salary                  |
+| ManagerID  | int         | YES      | References EmployeeID of manager |
+
+**Notes:**
+
+* Self-referencing relationship: `ManagerID` links to `EmployeeID`.
+* Can join with `Orders` using `EmployeeID` as `SalesPersonID`
+
+---
+
+#### 3. Products
+
+| Column    | Type        | Nullable | Description               |
+| --------- | ----------- | -------- | ------------------------- |
+| ProductID | int         | NO       | Unique product identifier |
+| Product   | varchar(50) | YES      | Product name              |
+| Category  | varchar(50) | YES      | Product category          |
+| Price     | int         | YES      | Price of product          |
+
+**Notes:**
+
+* Join with `Orders` using `ProductID`
+* Useful for sales aggregation by category or product
+
+---
+
+#### 4. Orders
+
+| Column        | Type         | Nullable | Description                            |
+| ------------- | ------------ | -------- | -------------------------------------- |
+| OrderID       | int          | NO       | Unique order identifier                |
+| ProductID     | int          | YES      | Product sold                           |
+| CustomerID    | int          | YES      | Customer who bought the product        |
+| SalesPersonID | int          | YES      | Employee who handled the order         |
+| OrderDate     | date         | YES      | Date order was placed                  |
+| ShipDate      | date         | YES      | Date order shipped                     |
+| OrderStatus   | varchar(50)  | YES      | Status of order (Pending/Shipped/etc.) |
+| ShipAddress   | varchar(255) | YES      | Shipping address                       |
+| BillAddress   | varchar(255) | YES      | Billing address                        |
+| Quantity      | int          | YES      | Quantity ordered                       |
+| Sales         | int          | YES      | Total sales amount (Quantity x Price)  |
+| CreationTime  | datetime2    | YES      | Timestamp of order creation            |
+
+**Notes:**
+
+* Join with `Customers`, `Employees`, and `Products`.
+* Useful for revenue, delivery, and performance analysis.
+
+---
+
+#### 5. OrdersArchive
+
+| Column        | Type         | Nullable | Description                     |
+| ------------- | ------------ | -------- | ------------------------------- |
+| OrderID       | int          | YES      | Archived order ID               |
+| ProductID     | int          | YES      | Product sold                    |
+| CustomerID    | int          | YES      | Customer who bought the product |
+| SalesPersonID | int          | YES      | Employee who handled the order  |
+| OrderDate     | date         | YES      | Original order date             |
+| ShipDate      | date         | YES      | Original shipping date          |
+| OrderStatus   | varchar(50)  | YES      | Original order status           |
+| ShipAddress   | varchar(255) | YES      | Original shipping address       |
+| BillAddress   | varchar(255) | YES      | Original billing address        |
+| Quantity      | int          | YES      | Quantity ordered                |
+| Sales         | int          | YES      | Total sales amount              |
+| CreationTime  | datetime2    | YES      | Original creation timestamp     |
+
+**Notes:**
+
+* Contains historical data.
+* Useful for year-over-year or archival reporting.
+
+---
+
+## Key Relationships
+
+* `Orders.CustomerID` → `Customers.CustomerID`
+* `Orders.ProductID` → `Products.ProductID`
+* `Orders.SalesPersonID` → `Employees.EmployeeID`
+* `Employees.ManagerID` → `Employees.EmployeeID` (self-join)
+* `OrdersArchive` mirrors `Orders` for historical analysis
+
+---
+
+## Usage Overview
+
+* Analyze sales per product, category, employee, or customer.
+* Track historical orders via `OrdersArchive`.
+* Build reports using joins, aggregations, window functions, and CTEs.
+* Detect trends, customer behavior, and performance metrics.
+
+---
+
 # SQL Practice Roadmap
 
 This repository contains a **structured SQL practice roadmap** from **Difficulty 3 to Difficulty 7**, designed for interview preparation and real-world analytics skills.
