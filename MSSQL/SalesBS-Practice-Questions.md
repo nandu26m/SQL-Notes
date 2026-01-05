@@ -680,3 +680,364 @@ Focus areas:
      *Churn cutoff.*
 
 ---
+**📕 Difficulty 6 — Questions 201–300**
+Focus areas:
+
+* Window functions (core)
+* Correlated subqueries
+* Time-series analysis
+* Advanced joins & ranking logic
+* Business analytics patterns
+---
+
+# Difficulty 6 — Advanced SQL & Analytics (201–300)
+
+---
+
+## 🔹 Window Functions (Must-Know)
+
+201. Rank employees by salary within each department.
+     *Uses `RANK() OVER (PARTITION BY Department)`.*
+
+202. Assign row numbers to orders ordered by `OrderDate`.
+     *Sequential ordering.*
+
+203. Show running total of sales per customer ordered by date.
+     *Cumulative sum logic.*
+
+204. Find highest-value order per customer.
+     *Window MAX per partition.*
+
+205. Show second-highest salary in each department.
+     *Ranking + filtering.*
+
+206. Rank products by price within category.
+     *Partition ranking.*
+
+207. Calculate average order value per customer using windows.
+     *Window AVG.*
+
+208. Show difference between each order’s sales and customer’s average sales.
+     *Deviation analysis.*
+
+209. Identify top 3 products by sales per category.
+     *Ranking with partition.*
+
+210. Calculate percent contribution of each order to customer total sales.
+     *Percentage window.*
+
+---
+
+## 🔹 LAG / LEAD (Trend Analysis)
+
+211. Compare each order’s sales with the previous order by the same customer.
+     *LAG function.*
+
+212. Calculate day-over-day sales change.
+     *Time comparison.*
+
+213. Identify customers whose order value increased compared to previous order.
+     *Growth detection.*
+
+214. Find products with declining month-over-month sales.
+     *LEAD / LAG trend.*
+
+215. Show time gap between consecutive orders per customer.
+     *DATEDIFF + LAG.*
+
+216. Detect sudden sales spikes per day.
+     *Anomaly detection.*
+
+217. Compare employee sales performance between consecutive months.
+     *Period comparison.*
+
+218. Identify customers with decreasing purchase frequency.
+     *Frequency trend.*
+
+219. Show first and last order sales for each customer.
+     *LAG/LEAD boundary logic.*
+
+220. Calculate cumulative average sales per month.
+     *Running average.*
+
+---
+
+## 🔹 Correlated Subqueries (Interview Favorite)
+
+221. Find employees earning more than their department average.
+     *Correlated subquery.*
+
+222. Show customers whose total sales exceed country average.
+     *Nested aggregation.*
+
+223. Find products whose price is above category average.
+     *Correlated pricing.*
+
+224. Identify orders whose sales exceed the customer’s average order value.
+     *Per-customer comparison.*
+
+225. Show employees who generated more sales than their manager.
+     *Correlated comparison.*
+
+226. Find customers with orders in every year available.
+     *Division logic.*
+
+227. Identify products sold in every country.
+     *Relational division.*
+
+228. Find customers with increasing order value trend.
+     *Correlation + time.*
+
+229. Find salesperson with highest average order value.
+     *Multi-level aggregation.*
+
+230. Identify employees whose salary is in top 10% company-wide.
+     *Percentile logic.*
+
+---
+
+## 🔹 Percentiles & Distribution
+
+231. Calculate median employee salary.
+     *Percentile function.*
+
+232. Find 90th percentile of order sales.
+     *Outlier threshold.*
+
+233. Identify customers in top 5% by total spending.
+     *High-value segmentation.*
+
+234. Segment customers into quartiles by score.
+     *NTILE logic.*
+
+235. Categorize employees into salary bands.
+     *Distribution grouping.*
+
+---
+
+## 🔹 Advanced Time-Series Analysis
+
+236. Show month-over-month sales growth rate.
+     *Percentage change.*
+
+237. Calculate rolling 3-month average sales.
+     *Moving average.*
+
+238. Identify best-performing quarter each year.
+     *Quarter aggregation.*
+
+239. Compare sales in first half vs second half of year.
+     *Period comparison.*
+
+240. Detect seasonal patterns in product sales.
+     *Seasonality detection.*
+
+241. Identify customers ordering only in peak months.
+     *Time behavior.*
+
+242. Calculate average delivery time per month.
+     *Logistics analysis.*
+
+243. Show longest delivery delay per year.
+     *Delivery performance.*
+
+244. Find days with zero sales.
+     *Gap detection.*
+
+245. Detect sudden drops in daily sales.
+     *Trend break.*
+
+---
+
+## 🔹 Advanced JOIN Logic
+
+246. Find employees who sold all product categories.
+     *Division with joins.*
+
+247. Identify customers who bought from all categories.
+     *Complete coverage.*
+
+248. Find products ordered by all customers.
+     *Relational division.*
+
+249. Show customers who bought from the same salesperson repeatedly.
+     *Relationship analysis.*
+
+250. Find employees whose customers never returned.
+     *Churn responsibility.*
+
+---
+
+## 🔹 Data Integrity & Auditing
+
+251. Identify orders shipped before order date.
+     *Data error detection.*
+
+252. Find orders with negative or zero sales.
+     *Invalid data.*
+
+253. Detect employees reporting to themselves.
+     *Hierarchy validation.*
+
+254. Identify customers with conflicting country data.
+     *Consistency check.*
+
+255. Find duplicate orders (same customer, date, product).
+     *Deduplication.*
+
+---
+
+## 🔹 Complex Business Metrics
+
+256. Calculate customer lifetime value (LTV).
+     *Total historical sales.*
+
+257. Identify churned customers (no orders in last X months).
+     *Churn logic.*
+
+258. Calculate repeat purchase rate.
+     *Customer behavior.*
+
+259. Compute average revenue per user (ARPU).
+     *SaaS metric.*
+
+260. Find customers with high order frequency but low value.
+     *Behavior segmentation.*
+
+---
+
+## 🔹 Recursive / Hierarchical Thinking
+
+261. Build employee management hierarchy.
+     *Self-join or recursive CTE.*
+
+262. Find maximum depth of management tree.
+     *Hierarchy depth.*
+
+263. Identify managers with highest revenue teams.
+     *Team performance.*
+
+264. Show employees with no subordinates.
+     *Leaf nodes.*
+
+265. Identify manager-employee salary inversions.
+     *Pay structure validation.*
+
+---
+
+## 🔹 Performance & Optimization
+
+266. Rewrite correlated subquery using JOIN + window.
+     *Query optimization.*
+
+267. Replace subquery with EXISTS.
+     *Performance tuning.*
+
+268. Identify expensive aggregations in a query.
+     *Execution awareness.*
+
+269. Suggest indexes for common queries.
+     *Index strategy.*
+
+270. Compare execution plans of JOIN vs EXISTS.
+     *Performance tradeoffs.*
+
+---
+
+## 🔹 Advanced Analytical Challenges
+
+271. Identify customers contributing to top 80% of revenue.
+     *Pareto principle.*
+
+272. Detect product cannibalization trends.
+     *Product overlap analysis.*
+
+273. Find customers switching product categories over time.
+     *Behavior shift.*
+
+274. Identify plateauing sales trends.
+     *Growth analysis.*
+
+275. Detect long-term declining customers.
+     *Churn early warning.*
+
+---
+
+## 🔹 Final Difficulty-6 Challenges
+
+276. Find customers with consistent monthly spending.
+     *Stability metric.*
+
+277. Identify best salesperson per quarter.
+     *Time-based ranking.*
+
+278. Calculate rolling customer retention rate.
+     *Cohort analysis.*
+
+279. Detect abnormal employee performance changes.
+     *Anomaly detection.*
+
+280. Identify customers who returned after long inactivity.
+     *Reactivation analysis.*
+
+281. Find orders responsible for revenue spikes.
+     *Event attribution.*
+
+282. Identify products driving seasonal peaks.
+     *Seasonal drivers.*
+
+283. Detect sudden price-sensitivity changes.
+     *Elasticity logic.*
+
+284. Compare performance before vs after promotions (assumed).
+     *A/B logic.*
+
+285. Identify employees with inconsistent sales patterns.
+     *Stability check.*
+
+286. Find products with stable long-term demand.
+     *Demand consistency.*
+
+287. Identify customers upselling over time.
+     *Cross-sell analysis.*
+
+288. Detect order batching behavior.
+     *Operational behavior.*
+
+289. Identify peak load times using CreationTime.
+     *Capacity planning.*
+
+290. Find customers ordering across multiple time zones (assumed).
+     *Global behavior.*
+
+291. Calculate average order processing time.
+     *Operational KPI.*
+
+292. Identify orders stuck in processing.
+     *Bottleneck detection.*
+
+293. Detect suspiciously fast deliveries.
+     *Fraud/data error.*
+
+294. Identify customers placing orders outside normal hours.
+     *Behavior anomaly.*
+
+295. Find salespersons with volatile performance.
+     *Statistical variance.*
+
+296. Identify customer cohorts by first order month.
+     *Cohort analysis.*
+
+297. Track cohort revenue over time.
+     *Cohort retention.*
+
+298. Identify best cohort by lifetime value.
+     *Cohort comparison.*
+
+299. Detect sales saturation points.
+     *Market maturity.*
+
+300. Build a full customer analytics dashboard query.
+     *End-to-end analytics.*
+
+---
