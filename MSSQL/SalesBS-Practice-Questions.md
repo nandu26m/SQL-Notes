@@ -140,8 +140,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 * Business logic
 * Data validation
 
-### JOIN-Centric Queries
-
 101. Show order ID, customer first name, and order date.
      *Join `Orders` with `Customers` using CustomerID.*
 
@@ -171,9 +169,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 
 110. Display employees who sold products in the “Electronics” category.
      *Filtering through joins.*
-
-
-### Aggregation + JOIN
 
 111. Calculate total sales per product category.
      *Category-level revenue.*
@@ -205,9 +200,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 120. Find daily total sales.
      *Daily revenue trend.*
 
-
-### Subqueries (Core Interview Topic)
-
 121. Find customers whose score is above the average score.
      *Scalar subquery.*
 
@@ -238,9 +230,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 130. Find employees who never handled an order.
      *Anti-join logic.*
 
-
-### EXISTS / NOT EXISTS
-
 131. Find customers who have at least one order.
      *EXISTS usage.*
 
@@ -255,9 +244,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 
 135. Find customers who placed orders after 2024.
      *Date-based EXISTS.*
-
-
-### Advanced Filtering Logic
 
 136. Show orders where shipping took more than 7 days.
      *DATEDIFF logic.*
@@ -274,8 +260,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 140. Find products contributing more than 10% of total sales.
      *Percentage logic.*
 
-### Self Joins & Hierarchies
-
 141. Show employee name and manager name.
      *Self JOIN.*
 
@@ -290,8 +274,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 
 145. Find top-level managers (no ManagerID).
      *Hierarchy root.*
-
-### Date & Time Analysis
 
 146. Find month with highest sales.
      *Time-based ranking.*
@@ -308,9 +290,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 150. Calculate order aging (today − order date).
      *Aging analysis.*
 
-
-### Data Quality & Validation
-
 151. Find orders where Sales ≠ Quantity × Product Price.
      *Data inconsistency detection.*
 
@@ -325,8 +304,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 
 155. Identify customers without country information.
      *Incomplete profiles.*
-
-### Window Function Introduction (Light)
 
 156. Rank employees by salary.
      *RANK() introduction.*
@@ -343,9 +320,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 160. Find each customer’s latest order.
      *MAX window logic.*
 
-
-### Mixed Real-World Scenarios
-
 161. Find salesperson who generated the highest revenue.
      *Performance leader.*
 
@@ -360,9 +334,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 
 165. Identify products with declining sales trend.
      *Time comparison.*
-
-
-### Set Operations & Archives
 
 166. Combine current and archived orders into one result set.
      *UNION usage.*
@@ -379,9 +350,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 170. Find orders moved to archive in the last year.
      *Archival logic.*
 
-
-### Interview-Style Thinking
-
 171. Find top 5 customers by lifetime value.
      *LTV calculation.*
 
@@ -396,9 +364,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 
 175. Identify peak sales hour using CreationTime.
      *Time-of-day analysis.*
-
-
-### Logic & Optimization
 
 176. Rewrite a subquery using JOIN.
      *Query optimization.*
@@ -415,9 +380,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 180. Show employees who handled orders from all categories.
      *Division problem.*
 
-
-### Advanced Aggregation Patterns
-
 181. Show cumulative sales per customer ordered by time.
      *Running totals.*
 
@@ -432,8 +394,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 
 185. Identify sales drop-off points.
      *Analytics thinking.*
-
-### Final Challenge (Difficulty 5)
 
 186. Find customers who placed orders on consecutive days.
      *Date sequence logic.*
