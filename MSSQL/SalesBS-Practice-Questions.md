@@ -200,6 +200,7 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 49. Count orders per status.
 50. Show today’s date using SQL.
 
+### Answers
 ```sql
 -- 1. List all customers from the Customers table.
 SELECT * FROM Sales.Customers;
