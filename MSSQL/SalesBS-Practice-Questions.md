@@ -420,6 +420,8 @@ SELECT CAST(GETDATE() AS DATE) AS TodaysDate;
 99. Calculate cumulative sales per customer.
 100. Identify repeat customers.
 
+```sql
+```
 ---
 
 ## Difficulty 5 — Joins, Subqueries & Business Logic (101–200)
