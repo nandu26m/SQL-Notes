@@ -200,6 +200,216 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 49. Count orders per status.
 50. Show today’s date using SQL.
 
+```sql
+/*
+1. List all customers from the Customers table.
+2. Show only FirstName and Country of all customers.
+3. Find customers where Country = 'USA'.
+4. Get customers with Score > 80.
+5. List employees working in the Sales department.
+6. Display employee names and salaries only.
+7. Find employees with salary greater than 50000.
+8. List all products with price less than 100.
+9. Show all orders with OrderStatus = 'Shipped'.
+10. Get orders placed after 2024-01-01.
+11. Display all customers ordered by Score ascending.
+12. List products ordered by price descending.
+13. Find employees whose Gender = 'M'.
+14. Show distinct countries from Customers.
+15. Count total number of customers.
+16. Count how many employees exist.
+17. Find the highest salary among employees.
+18. Find the lowest product price.
+19. Calculate the average employee salary.
+20. Show total sales value from Orders.
+21. List orders with quantity greater than 5.
+22. Show customers whose score is NULL.
+23. Show employees with no manager assigned.
+24. List orders where ShipDate is NULL.
+25. Show top 5 highest-paid employees.
+26. Get first 10 orders sorted by OrderDate.
+27. Show products in category Electronics.
+28. Find customers not from Germany.
+29. List employees born after 1990.
+30. Display orders with sales greater than 1000.
+31. Show all archived orders.
+32. Count number of archived orders.
+33. List orders created today.
+34. Show customers with score between 50 and 80.
+35. List employees whose salary is between 40k and 60k.
+36. Find products with price IN (50, 100, 150).
+37. Show orders with status IN ('Pending', 'Processing').
+38. Display employees sorted by last name.
+39. Find customers whose first name starts with 'A'.
+40. Find products ending with the word 'Pro'.
+41. Show orders shipped after order date.
+42. List all columns from Employees.
+43. Find customers with score not equal to 100.
+44. Display orders where sales = quantity × price.
+45. Show employees with salary divisible by 5.
+46. Find customers with missing last names.
+47. List products with price greater than average price.
+48. Show employees earning exactly 60000.
+49. Count orders per status.
+50. Show today’s date using SQL.
+*/
+
+-- 1. List all customers from the Customers table.
+SELECT * FROM Sales.Customers;
+
+-- 2. Show only FirstName and Country of all customers.
+SELECT FirstName, Country FROM Sales.Customers;
+
+-- 3. Find customers where Country = 'USA'.
+SELECT * FROM Sales.Customers WHERE Country = 'USA';
+
+-- 4. Get customers with Score > 80.
+SELECT * FROM Sales.Customers WHERE Score > 80;
+
+-- 5. List employees working in the Sales department.
+SELECT * FROM Sales.Employees WHERE Department = 'Sales';
+
+-- 6. Display employee names and salaries only.
+SELECT CONCAT(FirstName, ' ', LastName) AS EmpName, Salary FROM Sales.Employees;
+
+-- 7. Find employees with salary greater than 50000.
+SELECT * FROM Sales.Employees WHERE Salary > 50000;
+
+-- 8. List all products with price less than 100.
+SELECT * FROM Sales.Products WHERE Price < 100;
+
+-- 9. Show all orders with OrderStatus = 'Shipped'.
+SELECT * FROM Sales.Orders WHERE OrderStatus = 'Shipped';
+
+-- 10. Get orders placed after 2024-01-01.
+SELECT * FROM Sales.Orders WHERE OrderDate > '2024-01-01';
+
+-- 11. Display all customers ordered by Score ascending.
+SELECT CustomerID, CONCAT(FirstName, ' ', LastName) AS CustomerName, Country, Score
+FROM Sales.Customers
+ORDER BY Score ASC;
+
+-- 12. List products ordered by price descending.
+SELECT ProductID, Product, Category, Price FROM Sales.Products ORDER BY Price DESC;
+
+-- 13. Find employees whose Gender = 'M'.
+SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName FROM Sales.Employees WHERE Gender = 'M';
+
+-- 14. Show distinct countries from Customers.
+SELECT DISTINCT Country FROM Sales.Customers;
+
+-- 15. Count total number of customers.
+SELECT COUNT(DISTINCT CustomerID) AS TotalCustomers FROM Sales.Customers;
+
+-- 16. Count how many employees exist.
+SELECT COUNT(DISTINCT EmployeeID) AS TotalEmployees FROM Sales.Employees;
+
+-- 17. Find the highest salary among employees.
+SELECT MAX(Salary) AS HighestSalary FROM Sales.Employees;
+
+-- 18. Find the lowest product price.
+SELECT MIN(Price) AS LowestProductPrice FROM Sales.Products;
+
+-- 19. Calculate the average employee salary.
+SELECT AVG(Salary) AS AverageSalary FROM Sales.Employees;
+
+-- 20. Show total sales value from Orders.
+SELECT SUM(Sales) AS TotalSales FROM Sales.Orders;
+
+-- 21. List orders with quantity greater than 5.
+SELECT * FROM Sales.Orders WHERE Quantity > 5;
+
+-- 22. Show customers whose score is NULL.
+SELECT * FROM Sales.Customers WHERE Score IS NULL;
+
+-- 23. Show employees with no manager assigned.
+SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName FROM Sales.Employees WHERE ManagerID IS NULL;
+
+-- 24. List orders where ShipDate is NULL.
+SELECT * FROM Sales.Orders WHERE ShipDate IS NULL;
+
+-- 25. Show top 5 highest-paid employees.
+SELECT TOP 5 EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName FROM Sales.Employees ORDER BY Salary DESC;
+
+-- 26. Get first 10 orders sorted by OrderDate.
+SELECT TOP 10 * FROM Sales.Orders ORDER BY OrderDate ASC;
+
+-- 27. Show products in category Electronics.
+SELECT * FROM Sales.Products WHERE Category = 'Electronics';
+
+-- 28. Find customers not from Germany.
+SELECT * FROM Sales.Customers WHERE Country != 'DE';
+
+-- 29. List employees born after 1990.
+SELECT * FROM Sales.Employees WHERE YEAR(BirthDate) > 1990;
+
+-- 30. Display orders with sales greater than 1000.
+SELECT * FROM Sales.Orders WHERE Sales > 1000;
+
+-- 31. Show all archived orders.
+SELECT OrderID, CustomerID, OrderDate, OrderStatus FROM Sales.Orders WHERE LOWER(OrderStatus) = 'archived';
+
+-- 32. Count number of archived orders.
+SELECT COUNT(OrderID) AS TotalArchivedOrders FROM Sales.Orders WHERE LOWER(OrderStatus) = 'archived';
+
+-- 33. List orders created today.
+SELECT OrderID, CustomerID, OrderDate, OrderStatus FROM Sales.Orders
+WHERE CreationTime >= CAST(GETDATE() AS DATE) AND CreationTime < DATEADD(DAY, 1, CAST(GETDATE() AS DATE));
+
+-- 34. Show customers with score between 50 and 80.
+SELECT CustomerID, CONCAT(FirstName, ' ', LastName) AS CustomerName, Score FROM Sales.Customers WHERE Score BETWEEN 50 AND 80;
+
+-- 35. List employees whose salary is between 40k and 60k.
+SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName, Department, Salary FROM Sales.Employees WHERE Salary BETWEEN 40000 AND 60000;
+
+-- 36. Find products with price IN (50, 100, 150).
+SELECT ProductID, Product, Category, Price FROM Sales.Products WHERE Price IN (50, 100, 150);
+
+-- 37. Show orders with status IN ('Pending', 'Processing').
+SELECT OrderID, ProductID, OrderDate, ShipDate, OrderStatus, ShipAddress, BillAddress, Quantity, Sales FROM Sales.Orders WHERE OrderStatus IN ('Pending', 'Processing');
+
+-- 38. Display employees sorted by last name.
+SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName, Department, Salary, ManagerID FROM Sales.Employees ORDER BY LastName ASC;
+
+-- 39. Find customers whose first name starts with 'A'.
+SELECT CustomerID, CONCAT(FirstName, ' ', LastName) AS CustomerName, Score FROM Sales.Customers WHERE FirstName LIKE 'A%';
+
+-- 40. Find products ending with the word 'Pro'.
+SELECT ProductID, Product, Category, Price FROM Sales.Products WHERE Product LIKE '%Pro';
+
+-- 41. Show orders shipped after order date.
+SELECT OrderID, ProductID, OrderDate, ShipDate, OrderStatus FROM Sales.Orders WHERE OrderDate < ShipDate;
+
+-- 42. List all columns from Employees.
+SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA = 'Sales' AND TABLE_NAME = 'Employees';
+
+-- 43. Find customers with score not equal to 100.
+SELECT CustomerID, CONCAT(FirstName, ' ', LastName) AS CustomerName, Score FROM Sales.Customers WHERE Score != 100;
+
+-- 44. Display orders where sales = quantity × price.
+SELECT O.OrderID, O.ProductID, O.Quantity, O.Sales, P.Price FROM Sales.Orders AS O
+LEFT JOIN Sales.Products AS P ON O.ProductID = P.ProductID
+WHERE O.Sales = O.Quantity * P.Price;
+
+-- 45. Show employees with salary divisible by 5.
+SELECT EmployeeID, FirstName, LastName, Salary FROM Sales.Employees WHERE Salary % 5 = 0;
+
+-- 46. Find customers with missing last names.
+SELECT CustomerID, FirstName, LastName FROM Sales.Customers WHERE LastName IS NULL OR LastName = '';
+
+-- 47. List products with price greater than average price.
+SELECT ProductID, Product, Category, Price FROM Sales.Products WHERE Price > (SELECT AVG(Price) FROM Sales.Products);
+
+-- 48. Show employees earning exactly 60000.
+SELECT * FROM Sales.Employees WHERE Salary = 60000;
+
+-- 49. Count orders per status.
+SELECT OrderStatus, COUNT(OrderStatus) AS OrdersCount FROM Sales.Orders GROUP BY OrderStatus;
+
+-- 50. Show today's date using SQL.
+SELECT CAST(GETDATE() AS DATE) AS TodaysDate;
+```
+
 ---
 
 ## Difficulty 4 — Grouping & Simple Joins (51–100)
