@@ -201,59 +201,6 @@ This repository contains a **structured SQL practice roadmap** from **Difficulty
 50. Show today’s date using SQL.
 
 ```sql
-/*
-1. List all customers from the Customers table.
-2. Show only FirstName and Country of all customers.
-3. Find customers where Country = 'USA'.
-4. Get customers with Score > 80.
-5. List employees working in the Sales department.
-6. Display employee names and salaries only.
-7. Find employees with salary greater than 50000.
-8. List all products with price less than 100.
-9. Show all orders with OrderStatus = 'Shipped'.
-10. Get orders placed after 2024-01-01.
-11. Display all customers ordered by Score ascending.
-12. List products ordered by price descending.
-13. Find employees whose Gender = 'M'.
-14. Show distinct countries from Customers.
-15. Count total number of customers.
-16. Count how many employees exist.
-17. Find the highest salary among employees.
-18. Find the lowest product price.
-19. Calculate the average employee salary.
-20. Show total sales value from Orders.
-21. List orders with quantity greater than 5.
-22. Show customers whose score is NULL.
-23. Show employees with no manager assigned.
-24. List orders where ShipDate is NULL.
-25. Show top 5 highest-paid employees.
-26. Get first 10 orders sorted by OrderDate.
-27. Show products in category Electronics.
-28. Find customers not from Germany.
-29. List employees born after 1990.
-30. Display orders with sales greater than 1000.
-31. Show all archived orders.
-32. Count number of archived orders.
-33. List orders created today.
-34. Show customers with score between 50 and 80.
-35. List employees whose salary is between 40k and 60k.
-36. Find products with price IN (50, 100, 150).
-37. Show orders with status IN ('Pending', 'Processing').
-38. Display employees sorted by last name.
-39. Find customers whose first name starts with 'A'.
-40. Find products ending with the word 'Pro'.
-41. Show orders shipped after order date.
-42. List all columns from Employees.
-43. Find customers with score not equal to 100.
-44. Display orders where sales = quantity × price.
-45. Show employees with salary divisible by 5.
-46. Find customers with missing last names.
-47. List products with price greater than average price.
-48. Show employees earning exactly 60000.
-49. Count orders per status.
-50. Show today’s date using SQL.
-*/
-
 -- 1. List all customers from the Customers table.
 SELECT * FROM Sales.Customers;
 
