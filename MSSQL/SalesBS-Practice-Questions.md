@@ -422,6 +422,29 @@ SELECT CAST(GETDATE() AS DATE) AS TodaysDate;
 100. Identify repeat customers.
 
 ```sql
+-- 51. Count customers per country.
+SELECT
+	Country,
+	COUNT(CustomerID) AS TotalCustomers
+FROM Sales.Customers
+GROUP BY Country
+ORDER BY TotalCustomers DESC;
+
+-- 52. Calculate average score per country.
+SELECT
+	Country,
+	AVG(Score) AS AverageScore
+FROM Sales.Customers
+GROUP BY Country
+ORDER BY AverageScore DESC;
+
+-- 53. Count employees per department.
+SELECT
+	Department,
+	COUNT(EmployeeID) AS TotalEmployees
+FROM Sales.Employees
+GROUP BY Department
+ORDER BY TotalEmployees DESC;
 ```
 ---
 
