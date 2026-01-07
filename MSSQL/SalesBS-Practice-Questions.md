@@ -445,6 +445,59 @@ SELECT
 FROM Sales.Employees
 GROUP BY Department
 ORDER BY TotalEmployees DESC;
+
+-- 54. Find max salary per department.
+SELECT
+	Department,
+	MAX(Salary) AS Highest_Salary
+FROM Sales.Employees
+GROUP BY Department;
+
+-- 55. Show departments having more than 5 employees.
+SELECT
+	Department,
+	COUNT(EmployeeID) AS TotalUsers
+FROM Sales.Employees
+GROUP BY Department
+HAVING COUNT(EmployeeID) > 5;
+
+-- 56. Count orders per order status.
+SELECT
+	OrderStatus,
+	COUNT(OrderID) AS TotalOrders
+FROM Sales.Orders
+GROUP BY OrderStatus;
+
+-- 57. Calculate total sales per customer.
+SELECT
+	CustomerID,
+	SUM(Sales) AS TotalSales
+FROM Sales.Orders
+GROUP BY CustomerID;
+
+-- 58. Calculate total quantity sold per product.
+SELECT
+	ProductID,
+	SUM(Quantity) AS TotalQuantity
+FROM Sales.Orders
+GROUP BY ProductID;
+
+-- 59. Find total sales per salesperson.
+SELECT
+	SalesPersonID,
+	SUM(Sales) AS TotalSales
+FROM Sales.Orders
+GROUP BY SalesPersonID;
+
+-- 60. Join Orders with Customers to show customer names per order.
+SELECT
+	O.OrderID,
+	O.CustomerID,
+	CONCAT(FirstName, ' ', LastName) AS Name
+FROM Sales.Orders AS O
+JOIN Sales.Customers AS C
+	ON O.CustomerID = C.CustomerID;
+
 ```
 ---
 
