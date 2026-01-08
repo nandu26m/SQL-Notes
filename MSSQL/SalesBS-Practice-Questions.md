@@ -498,6 +498,39 @@ FROM Sales.Orders AS O
 JOIN Sales.Customers AS C
 	ON O.CustomerID = C.CustomerID;
 
+-- 61. Join Orders with Products to show product names.
+SELECT
+	O.OrderID,
+	P.ProductID,
+	P.Product,
+	P.Category,
+	P.Price
+FROM Sales.Orders AS O
+JOIN Sales.Products AS P
+	ON O.ProductID = P.ProductID;
+
+-- 62. Display order date, product name, and quantity.
+SELECT
+	O.OrderDate,
+	P.Product,
+	O.Quantity
+FROM Sales.Orders AS O
+JOIN Sales.Products AS P
+	ON O.ProductID = P.ProductID;
+
+-- 63. Find customers who have placed at least one order.
+SELECT
+	C.CustomerID,
+	CONCAT(C.FirstName, ' ', C.LastName) AS Name,
+	COUNT(O.OrderID) AS TotalOrders
+FROM Sales.Orders AS O
+INNER JOIN Sales.Customers AS C
+	ON O.CustomerID = C.CustomerID
+GROUP BY 
+	C.CustomerID, 
+	C.FirstName, 
+	C.LastName
+HAVING COUNT(O.OrderID) >= 1;
 ```
 ---
 
