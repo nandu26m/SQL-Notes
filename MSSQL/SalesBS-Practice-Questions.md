@@ -531,6 +531,107 @@ GROUP BY
 	C.FirstName, 
 	C.LastName
 HAVING COUNT(O.OrderID) >= 1;
+
+-- 64. Find customers who never placed an order.
+SELECT
+    C.CustomerID,
+    C.FirstName,
+    C.LastName,
+    C.Country,
+    C.Score
+FROM Sales.Customers AS C
+LEFT JOIN Sales.Orders AS O
+    ON C.CustomerID = O.CustomerID
+WHERE O.CustomerID IS NULL;
+
+-- 65. Show employees who handled orders.
+SELECT
+	DISTINCT E.EmployeeID,
+	E.FirstName,
+	E.LastName
+FROM Sales.Orders AS O
+INNER JOIN Sales.Employees AS E
+	ON O.SalesPersonID = E.EmployeeID;
+
+-- 66. Count orders per day.
+SELECT
+	OrderDate,
+	COUNT(OrderID) AS TotalOrders
+FROM Sales.Orders
+GROUP BY OrderDate;
+
+-- 67. Find sales per month.
+SELECT
+	YEAR(OrderDate)AS Year,
+	MONTH(OrderDate) AS Month,
+	SUM(Sales) AS TotalOrdersPerMonth
+FROM Sales.Orders
+GROUP BY 
+	YEAR(OrderDate),
+	MONTH(OrderDate)
+ORDER BY 
+	Year,
+	Month;
+
+-- 68. Join employees with their managers.
+SELECT
+    E1.EmployeeID        AS EmployeeID,
+    E1.FirstName         AS EmployeeFirstName,
+    E1.LastName          AS EmployeeLastName,
+    E2.EmployeeID        AS ManagerID,
+    E2.FirstName         AS ManagerFirstName,
+    E2.LastName          AS ManagerLastName
+FROM Sales.Employees AS E1
+LEFT JOIN Sales.Employees AS E2
+    ON E1.ManagerID = E2.EmployeeID;
+
+-- 69. Show employee name and manager name.
+SELECT
+    E1.EmployeeID,
+    CONCAT(E1.FirstName, ' ', E1.LastName) AS EmployeeName,
+    COALESCE(E2.FirstName + ' ' + E2.LastName, 'No Manager') AS ManagerName
+FROM Sales.Employees E1
+LEFT JOIN Sales.Employees E2
+    ON E1.ManagerID = E2.EmployeeID;
+
+-- 70. Find average sales per order.
+SELECT
+	ROUND(AVG(Sales), 2) AS AvgSales
+FROM Sales.Orders;
+
+-- 71. Show customers with more than 3 orders.
+SELECT
+	CustomerID,
+	COUNT(OrderID) AS TotalOrders
+FROM Sales.Orders
+GROUP BY 
+	CustomerID
+HAVING COUNT(OrderID) > 3;
+
+-- 72. List top 5 customers by total sales.
+SELECT TOP 5
+	CustomerID,
+	SUM(Sales) AS TotalSales
+FROM Sales.Orders
+GROUP BY 
+	CustomerID
+ORDER BY TotalSales DESC;
+
+-- 73. Show top-selling product.
+SELECT TOP 1
+	ProductID,
+	COUNT(OrderID) AS TotalOrders
+FROM Sales.Orders
+GROUP BY ProductID
+ORDER BY TotalOrders DESC;
+
+-- 74. Find employee with highest total sales.
+SELECT TOP 1
+	SalesPersonID,
+	SUM(Sales) AS TotalSales
+FROM Sales.Orders
+GROUP BY SalesPersonID
+ORDER BY TotalSales DESC;
 ```
 ---
 
