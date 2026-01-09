@@ -26,7 +26,6 @@ This document provides a concise understanding of the `SalesDB` database, includ
 
 * Primary key: `CustomerID`
 * Can join with `Orders` using `CustomerID`
-
 ---
 
 #### 2. Employees
