@@ -631,6 +631,17 @@ SELECT TOP 1
 FROM Sales.Orders
 GROUP BY SalesPersonID
 ORDER BY TotalSales DESC;
+
+-- 75. Count archived orders per year.
+SELECT
+    YEAR(OrderDate) AS OrderYear,
+    COUNT(*) AS ArchivedOrders
+FROM Sales.Orders
+WHERE OrderStatus = 'archived'
+  AND OrderDate IS NOT NULL
+GROUP BY YEAR(OrderDate)
+ORDER BY OrderYear;
+
 ```
 ---
 
