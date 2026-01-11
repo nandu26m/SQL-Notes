@@ -636,11 +636,77 @@ ORDER BY TotalSales DESC;
 SELECT
     YEAR(OrderDate) AS OrderYear,
     COUNT(*) AS ArchivedOrders
-FROM Sales.Orders
-WHERE OrderStatus = 'archived'
-  AND OrderDate IS NOT NULL
+FROM Sales.OrdersArchive
 GROUP BY YEAR(OrderDate)
 ORDER BY OrderYear;
+
+-- 76. Compare delivered vs shipped order counts.
+SELECT
+	OrderStatus,
+	COUNT(*) AS OrderStatusCount
+FROM Sales.Orders
+WHERE LOWER(OrderStatus) IN ('delivered', 'shipped')
+	AND OrderStatus IS NOT NULL
+GROUP BY OrderStatus;
+
+SELECT
+	SUM(CASE WHEN OrderStatus = 'Delivered' 
+		THEN 1 ELSE 0 END) AS DeliveredOrders,
+	SUM(CASE WHEN OrderStatus = 'Shipped'
+		THEN 1 ELSE 0 END) AS ShippedOrders
+FROM Sales.Orders;
+
+-- 77. Show orders with delayed shipping.
+SELECT
+    'Delayed' AS OrderStatus,
+    COUNT(*) AS DelayedOrderCount
+FROM Sales.Orders
+WHERE OrderStatus = 'Delayed';
+
+-- 78. Calculate average delivery time.
+SELECT
+	AVG(DATEDIFF(DAY, OrderDate, ShipDate)) AS AvgDeliveryDays
+FROM Sales.Orders
+WHERE OrderStatus = 'Delivered'
+	AND OrderDate IS NOT NULL
+	AND ShipDate IS NOT NULL;
+
+-- 79. Find products never ordered.
+-- Using 'LEFT JOIN + NULL filtering' 
+SELECT 
+	P.ProductID,
+	P.Product,
+	P.Category,
+	P.Price
+FROM Sales.Products AS P
+LEFT JOIN Sales.Orders AS O
+	ON P.ProductID = O.ProductID
+WHERE O.ProductID IS NULL;
+
+-- Using 'NOT EXISTS'
+SELECT
+	P.ProductID,
+	P.Product,
+	P.Category,
+	P.Price
+FROM Sales.Products P
+WHERE NOT EXISTS(
+	SELECT 1
+	FROM Sales.Orders O
+	WHERE O.ProductID = P.ProductID
+);
+
+-- Using 'NOT IN'
+SELECT
+	*
+FROM Sales.Products
+WHERE ProductID NOT IN
+(
+	SELECT
+		ProductID
+	FROM Sales.Orders
+	WHERE ProductID IS NOT NULL
+);
 
 ```
 ---
