@@ -654,7 +654,7 @@ SELECT
 		THEN 1 ELSE 0 END) AS DeliveredOrders,
 	SUM(CASE WHEN OrderStatus = 'Shipped'
 		THEN 1 ELSE 0 END) AS ShippedOrders
-FROM Sales.Orders
+FROM Sales.Orders;
 
 -- 77. Show orders with delayed shipping.
 SELECT
@@ -681,7 +681,7 @@ SELECT
 FROM Sales.Products AS P
 LEFT JOIN Sales.Orders AS O
 	ON P.ProductID = O.ProductID
-WHERE O.ProductID IS NULL
+WHERE O.ProductID IS NULL;
 
 -- Using 'NOT EXISTS'
 SELECT
@@ -706,7 +706,8 @@ WHERE ProductID NOT IN
 		ProductID
 	FROM Sales.Orders
 	WHERE ProductID IS NOT NULL
-)
+);
+
 -- 80. Find customers who ordered products from multiple categories
 SELECT
     O.CustomerID,
@@ -720,8 +721,6 @@ JOIN Sales.Customers AS C
 GROUP BY O.CustomerID, C.FirstName, C.LastName
 HAVING COUNT(DISTINCT P.Category) > 1;
 
-
-
 -- 81. Show total sales per country.
 SELECT
 	C.Country,
@@ -731,7 +730,7 @@ LEFT JOIN Sales.Customers AS C
 	ON O.CustomerID = C.CustomerID
 	AND C.Country IS NOT NULL
 GROUP BY C.Country
-ORDER BY TotalSalesByCountry DESC
+ORDER BY TotalSalesByCountry DESC;
 
 -- 82. Find salesperson with no orders.
 WITH SalespersonsWithOrders AS (
