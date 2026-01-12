@@ -681,7 +681,7 @@ SELECT
 FROM Sales.Products AS P
 LEFT JOIN Sales.Orders AS O
 	ON P.ProductID = O.ProductID
-WHERE O.ProductID IS NULL;
+WHERE O.ProductID IS NULL
 
 -- Using 'NOT EXISTS'
 SELECT
@@ -706,12 +706,21 @@ WHERE ProductID NOT IN
 		ProductID
 	FROM Sales.Orders
 	WHERE ProductID IS NOT NULL
-);
-
--- 80. Find customers who ordered multiple categories.
+)
+-- 80. Find customers who ordered products from multiple categories
 SELECT
-	*
-FROM Sales.Orders, Sales.Products;
+    O.CustomerID,
+    CONCAT(C.FirstName, ' ', C.LastName) AS CustomerName,
+    COUNT(DISTINCT P.Category) AS CategoryCount
+FROM Sales.Orders AS O
+JOIN Sales.Products AS P
+    ON O.ProductID = P.ProductID
+JOIN Sales.Customers AS C
+    ON O.CustomerID = C.CustomerID
+GROUP BY O.CustomerID, C.FirstName, C.LastName
+HAVING COUNT(DISTINCT P.Category) > 1;
+
+
 
 -- 81. Show total sales per country.
 SELECT
@@ -722,7 +731,7 @@ LEFT JOIN Sales.Customers AS C
 	ON O.CustomerID = C.CustomerID
 	AND C.Country IS NOT NULL
 GROUP BY C.Country
-ORDER BY TotalSalesByCountry DESC;
+ORDER BY TotalSalesByCountry DESC
 
 -- 82. Find salesperson with no orders.
 WITH SalespersonsWithOrders AS (
@@ -753,6 +762,71 @@ SELECT
 FROM EmployeesAge
 WHERE Age > (SELECT AVG(Age) FROM EmployeesAge);
 
+-- 84. Show customers with highest score per country.
+WITH HighestScoreCustomers AS
+(SELECT
+	Country,
+	CustomerID,
+	CONCAT(FirstName, ' ', LastName) AS Name,
+	Score,
+	RANK() OVER(PARTITION BY Country ORDER BY Score DESC) AS rn
+FROM Sales.Customers)
+SELECT
+	Country,
+	CustomerID,
+	Name
+FROM HighestScoreCustomers
+WHERE rn = 1;
+
+-- 85. Rank products by price.
+SELECT
+	ProductID,
+	Product,
+	Category,
+	Price,
+	RANK() OVER(ORDER BY Price DESC) AS rnk
+FROM Sales.Products;
+
+-- 86. Show duplicate customer first names.
+WITH DuplicateNames AS (
+    SELECT FirstName
+    FROM Sales.Customers
+    GROUP BY FirstName
+    HAVING COUNT(*) > 1
+)
+SELECT *
+FROM Sales.Customers
+WHERE FirstName IN (SELECT FirstName FROM DuplicateNames);
+
+-- 87. Count orders per customer per year.
+SELECT
+	CustomerID,
+	YEAR(OrderDate) AS Year,
+	COUNT(*) AS TotalOrders,
+	SUM(Sales) AS TotalSales
+FROM Sales.Orders
+GROUP BY CustomerID, YEAR(OrderDate);
+
+-- 88. Show employees whose salary is above department average.
+WITH DepartmentAvgSalary AS
+(
+SELECT
+	Department,
+	AVG(Salary) AS AvgSalary
+FROM Sales.Employees
+GROUP BY Department
+)
+SELECT
+	E.EmployeeID,
+	CONCAT(E.FirstName, ' ', E.LastName) As Name,
+	E.Department,
+	E.Salary,
+	D.AvgSalary
+FROM Sales.Employees E
+LEFT JOIN DepartmentAvgSalary AS D
+	ON E.Department = D.Department
+WHERE E.Salary > D.AvgSalary
+ORDER BY E.Department ASC, E.Salary DESC;
 ```
 ---
 
