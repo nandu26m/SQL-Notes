@@ -654,7 +654,7 @@ SELECT
 		THEN 1 ELSE 0 END) AS DeliveredOrders,
 	SUM(CASE WHEN OrderStatus = 'Shipped'
 		THEN 1 ELSE 0 END) AS ShippedOrders
-FROM Sales.Orders;
+FROM Sales.Orders
 
 -- 77. Show orders with delayed shipping.
 SELECT
@@ -707,6 +707,51 @@ WHERE ProductID NOT IN
 	FROM Sales.Orders
 	WHERE ProductID IS NOT NULL
 );
+
+-- 80. Find customers who ordered multiple categories.
+SELECT
+	*
+FROM Sales.Orders, Sales.Products;
+
+-- 81. Show total sales per country.
+SELECT
+	C.Country,
+	SUM(O.Sales) AS TotalSalesByCountry
+FROM Sales.Orders AS O
+LEFT JOIN Sales.Customers AS C
+	ON O.CustomerID = C.CustomerID
+	AND C.Country IS NOT NULL
+GROUP BY C.Country
+ORDER BY TotalSalesByCountry DESC;
+
+-- 82. Find salesperson with no orders.
+WITH SalespersonsWithOrders AS (
+    SELECT DISTINCT
+        SalesPersonID
+    FROM Sales.Orders
+    WHERE SalesPersonID IS NOT NULL
+)
+SELECT
+    E.EmployeeID,
+    E.FirstName,
+    E.LastName
+FROM Sales.Employees AS E
+LEFT JOIN SalespersonsWithOrders AS S
+    ON E.EmployeeID = S.SalesPersonID
+WHERE S.SalesPersonID IS NULL;
+
+-- 83.  employees older than average employee age.
+WITH EmployeesAge AS
+(SELECT
+	EmployeeID,
+	CONCAT(FirstName, ' ', LastName) AS Name,
+	BirthDate,
+	DATEDIFF(YEAR, BirthDate, GETDATE()) - CASE WHEN DATEADD(YEAR, DATEDIFF(YEAR, BirthDate, GETDATE()), BirthDate) > GETDATE() THEN 1 ELSE 0 END AS Age
+FROM Sales.Employees)
+SELECT
+	*
+FROM EmployeesAge
+WHERE Age > (SELECT AVG(Age) FROM EmployeesAge);
 
 ```
 ---
